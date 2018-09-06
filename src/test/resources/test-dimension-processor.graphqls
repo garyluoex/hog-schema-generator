@@ -1,0 +1,70 @@
+type PlatformOrder implements HOGSDimension {
+    advertiser(where: PlatformAccountWhereOperation): PlatformAccount
+    agency(where: PlatformAccountWhereOperation): PlatformAccount
+    name: String
+    status: String
+}
+type PlatformLine implements HOGSDimension {
+    order(where: PlatformOrderWhereOperation): PlatformOrder
+    name: String
+    status: String
+    platform: String
+}
+type PlatformAccount implements HOGSDimension {
+    name: String
+    status: String
+}
+input PlatformOrderWhereOperation {
+    the_advertiser: PlatformAccountWhereOperation
+    the_agency: PlatformAccountWhereOperation
+    name_is: String
+    name_isNot: String
+    name_contains: String
+    name_notContains: String
+    status_is: String
+    status_isNot: String
+    status_contains: String
+    status_notContains: String
+}
+input PlatformLineWhereOperation {
+    the_order: PlatformOrderWhereOperation
+    name_is: String
+    name_isNot: String
+    name_contains: String
+    name_notContains: String
+    status_is: String
+    status_isNot: String
+    status_contains: String
+    status_notContains: String
+    platform_is: String
+    platform_isNot: String
+    platform_contains: String
+    platform_notContains: String
+}
+input PlatformAccountWhereOperation {
+    name_is: String
+    name_isNot: String
+    name_contains: String
+    name_notContains: String
+    status_is: String
+    status_isNot: String
+    status_contains: String
+    status_notContains: String
+}
+type Datasources implements HOGSDatasources {
+    uadRevenueData: [UserTableRecord]
+}
+type UserTableRecord implements HOGSRecord {
+    platformOrder: PlatformOrder
+    platformLine: PlatformLine
+    platformAccount: PlatformAccount
+    impressions: Impressions
+    revenue: Revenue
+}
+type Impressions implements HOGSMetric {
+    value: Int
+}
+type Revenue implements HOGSMetric {
+    value: Float
+    currency: String
+}

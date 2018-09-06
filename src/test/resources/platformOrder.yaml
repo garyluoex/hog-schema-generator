@@ -1,0 +1,94 @@
+dim_platform_order:
+  apiName: PlatformOrder
+  type: HOGSDimension
+  description: Platform Order.
+  fields:
+# Primary Key
+    order_id_key:
+      type: String
+      apiName: key
+      description: Order ID Key
+
+# Foreign Keys
+    advertiser_id_key:
+      type: String
+      apiName: advertiser
+      domain: PlatformAccount
+      description: Advertiser ID Key
+
+    platform_code:
+      type: String
+      apiName: platform
+      domain: Platform
+      description: Internal short name given to an Ad Platform (e.g. YAMP YAM).
+
+# Degenerate Fields
+    order_id:
+      type: String
+      apiName: id
+      description: >-
+        Unique identifier for an order created in an ad platform (e.g. DSP+ Apt).
+        This ID is unique only to one ad platform and it is possible for the same ID
+        to exist in two ad platforms.
+
+    advertiser_id:
+      type: String
+      apiName: advertiserId
+      description: >-
+        Unique identifier for an advertiser account created in an ad platform (e.g.
+        DSP+ Apt). This ID is unique only to one ad platform and it is possible for
+        the same ID to exist in two ad platforms.
+
+    seat_id:
+      type: String
+      apiName: advanceSeatId
+      description: >-
+        Unique identifier for a buy seat created in an ad platform (e.g. DSP+ Apt).
+        This ID is unique only to one ad platform and it is possible for the same ID
+        to exist in two ad platforms.
+      advance: true
+
+    order_name:
+      type: String
+      apiName: name
+      description: >-
+        Name of the order as provided by the creator of the order. Not unique within
+        or across ad platforms
+
+    order_start_date_advertiser_timezone:
+      type: String
+      apiName: startDate
+      description: The effective Start Date for the order.
+
+    order_end_date_advertiser_timezone:
+      type: String
+      apiName: endDate
+      description: The effective End Date for the order.
+
+    order_budget_type_code:
+      type: String
+      apiName: budgetTypeCode
+      description: Indicates if the budget is cumulative or per period (day).
+
+    order_budget:
+      type: Float
+      apiName: budget
+      description: >-
+        The maximum spend amount set for the order. For some platforms this value
+        can be set explicitely or be unlimited (e.g. DSP+) while for others it is
+        always the cumulative budgets of the lines on the order (e.g. Apt)
+
+    order_status_code:
+      type: String
+      apiName: statusCode
+      description: The workflow status of the order. e.g. Committed Running.
+
+    order_timezone:
+      type: String
+      apiName: timeZone
+      description: The timezone used to express start and end dates for the order.
+
+    order_currency:
+      type: String
+      apiName: currency
+      description: The currency used to express financial amounts in the order.

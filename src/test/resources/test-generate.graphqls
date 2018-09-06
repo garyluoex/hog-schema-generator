@@ -1,0 +1,105 @@
+type PlatformOrder implements HOGSDimension {
+    advertiser(where: PlatformAccountWhereOperation): PlatformAccount
+    agency(where: PlatformAccountWhereOperation): PlatformAccount
+    name: String
+    status: String
+    _HOGSType: HOGSType
+}
+type PlatformLine implements HOGSDimension {
+    order(where: PlatformOrderWhereOperation): PlatformOrder
+    name: String
+    status: String
+    platform: String
+    _HOGSType: HOGSType
+}
+type PlatformAccount implements HOGSDimension {
+    name: String
+    status: String
+    _HOGSType: HOGSType
+}
+type Datasources implements HOGSDatasources {
+    uadRevenueData(where: UserTableRecordWhereOperation): [UserTableRecord]
+    _HOGSType: HOGSType
+}
+type UserTableRecord implements HOGSRecord {
+    platformOrder(where: PlatformOrderWhereOperation): PlatformOrder
+    platformLine(where: PlatformLineWhereOperation): PlatformLine
+    platformAccount(where: PlatformAccountWhereOperation): PlatformAccount
+    impressions(where: ImpressionsWhereOperation): Impressions
+    revenue(where: RevenueWhereOperation): Revenue
+    _HOGSType: HOGSType
+}
+type Impressions implements HOGSMetric {
+    value: Int
+    _HOGSType: HOGSType
+}
+type Revenue implements HOGSMetric {
+    value: Float
+    currency: String
+    _HOGSType: HOGSType
+}
+input ImpressionsWhereOperation {
+    value_is: Int
+    value_isNot: Int
+    value_greaterThan: Int
+    value_lessThan: Int
+    value_greaterOrEquals: Int
+    value_lessOrEquals: Int
+}
+input RevenueWhereOperation {
+    value_greaterThan: Float
+    value_lessThan: Float
+    value_greaterOrEquals: Float
+    value_lessOrEquals: Float
+    currency_is: String
+    currency_isNot: String
+    currency_contains: String
+    currency_notContains: String
+}
+input PlatformOrderWhereOperation {
+    the_advertiser: PlatformAccountWhereOperation
+    the_agency: PlatformAccountWhereOperation
+    name_is: String
+    name_isNot: String
+    name_contains: String
+    name_notContains: String
+    status_is: String
+    status_isNot: String
+    status_contains: String
+    status_notContains: String
+}
+input PlatformLineWhereOperation {
+    the_order: PlatformOrderWhereOperation
+    name_is: String
+    name_isNot: String
+    name_contains: String
+    name_notContains: String
+    status_is: String
+    status_isNot: String
+    status_contains: String
+    status_notContains: String
+    platform_is: String
+    platform_isNot: String
+    platform_contains: String
+    platform_notContains: String
+}
+input PlatformAccountWhereOperation {
+    name_is: String
+    name_isNot: String
+    name_contains: String
+    name_notContains: String
+    status_is: String
+    status_isNot: String
+    status_contains: String
+    status_notContains: String
+}
+input UserTableRecordWhereOperation {
+    the_platformOrder: PlatformOrderWhereOperation
+    the_platformLine: PlatformLineWhereOperation
+    the_platformAccount: PlatformAccountWhereOperation
+    the_impressions: ImpressionsWhereOperation
+    the_revenue: RevenueWhereOperation
+}
+schema {
+    query: Datasources
+}

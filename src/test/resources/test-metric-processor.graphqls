@@ -1,0 +1,52 @@
+type Impressions implements HOGSMetric {
+    value: Int
+}
+type Revenue implements HOGSMetric {
+    value: Float
+    currency: String
+}
+input ImpressionsWhereOperation {
+    value_is: Int
+    value_isNot: Int
+    value_between: Int
+    value_greaterThan: Int
+    value_lessThan: Int
+    value_greaterOrEquals: Int
+    value_lessOrEquals: Int
+}
+input RevenueWhereOperation {
+    value_greaterThan: Float
+    value_lessThan: Float
+    value_greaterOrEquals: Float
+    value_lessOrEquals: Float
+    currency_is: String
+    currency_isNot: String
+    currency_contains: String
+    currency_notContains: String
+}
+type Datasources implements HOGSDatasources {
+    uadRevenueData: [UserTableRecord]
+}
+type UserTableRecord implements HOGSRecord {
+    platformOrder: PlatformOrder
+    platformLine: PlatformLine
+    platformAccount: PlatformAccount
+    impressions: Impressions
+    revenue: Revenue
+}
+type PlatformOrder implements HOGSDimension {
+    advertiser: PlatformAccount
+    agency: PlatformAccount
+    name: String
+    status: String
+}
+type PlatformLine implements HOGSDimension {
+    order: PlatformOrder
+    name: String
+    status: String
+    platform: String
+}
+type PlatformAccount implements HOGSDimension {
+    name: String
+    status: String
+}

@@ -1,0 +1,21 @@
+schema {
+    query: Datasources
+}
+type Datasources implements HOGSDatasources {
+    uadRevenueData: [UserTableRecord]
+}
+type UserTableRecord implements HOGSRecord {
+    platformOrder: PlatformOrder
+    platformLine: PlatformLine
+    platformAccount: PlatformAccount
+    platform: Platform
+    impressions: Impressions
+    revenue: Revenue
+}
+type Impressions implements HOGSMetric {
+    value: Int
+}
+type Revenue implements HOGSMetric {
+    value: Float
+    currency: String
+}

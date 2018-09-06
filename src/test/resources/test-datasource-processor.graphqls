@@ -1,0 +1,33 @@
+type Datasources implements HOGSDatasources {
+    uadRevenueData(where: UserTableRecordWhereOperation): [UserTableRecord]
+}
+type UserTableRecord implements HOGSRecord {
+    platformOrder: PlatformOrder
+    platformLine: PlatformLine
+    platformAccount: PlatformAccount
+    impressions: Impressions
+    revenue: Revenue
+}
+type PlatformOrder implements HOGSDimension {
+    advertiser: PlatformAccount
+    agency: PlatformAccount
+    name: String
+    status: String
+}
+type PlatformLine implements HOGSDimension {
+    order: PlatformOrder
+    name: String
+    status: String
+    platform: String
+}
+type PlatformAccount implements HOGSDimension {
+    name: String
+    status: String
+}
+type Impressions implements HOGSMetric {
+    value: Int
+}
+type Revenue implements HOGSMetric {
+    value: Float
+    currency: String
+}

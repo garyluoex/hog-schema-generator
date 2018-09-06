@@ -1,0 +1,306 @@
+dim_platform_line:
+  apiName: PlatformLine
+  type: HOGSDimension
+  description: A set of bidding instructions that at minimum includes a bid price for inventory. Most campaigns also include criteria such as a specific start and end date, daily or overall budgets, frequency restrictions, and targeting based on user or inventory data.
+  fields:
+# Primary Key
+    line_id_key:
+      type: String
+      apiName: key
+      description: Line ID Key
+
+# Foreign Keys
+    order_id_key:
+      type: String
+      apiName: order
+      domain: PlatformOrder
+      description: Order ID Key
+
+    advertiser_id_key:
+      type: String
+      apiName: advetiser
+      domain: PlatformAccount
+      description: Advertiser ID Key
+
+    platform_code:
+      type: String
+      apiName: platform
+      domain: Platform
+      description: Internal short name given to an Ad Platform (e.g. YAMP YAM).
+
+# Degenerate Fields
+    ext_line_id:
+      type: String
+      apiName: id
+      description: >-
+        Unique number that identifies a line in the booking platform shown to external users.
+        Each line contains details around bidding/billing setting budget flight inventory/user
+        targeting and media types/formats for some platforms.
+
+    advertiser_id:
+      type: String
+      apiName: advertiserId
+      category: Buyer
+      description: >-
+        Unique identifier for an advertiser account created in an ad platform (e.g.
+        DSP+ Apt). This ID is unique only to one ad platform and it is possible for
+        the same ID to exist in two ad platforms.
+      advance: true
+
+    seat_id:
+      type: String
+      apiName: seatId
+      description: >-
+        Unique identifier for a buy seat created in an ad platform (e.g. DSP+ Apt).
+        This ID is unique only to one ad platform and it is possible for the same ID
+        to exist in two ad platforms.
+      advance: true
+
+    line_name:
+      type: String
+      apiName: name
+      description: >-
+        Non-unique user given name for a line ID in the booking platform. Each
+        unique line ID contains details around bidding/billing setting budget flight
+        inventory/user targeting and media types/formats for some platforms.
+
+    line_start_date_advertiser_timezone:
+      type: String
+      apiName: startDateAdvertiserTimezone
+      description: >-
+        The date the platform line is expected to start serving. Serving will not
+        start unless an ad is associated to the line.
+
+    line_end_date_advertiser_timezone:
+      type: String
+      apiName: endDateAdvertiserTimezone
+      description: The date the platform line will stop serving.
+
+    line_date_timezone:
+      type: String
+      apiName: dateTimezone
+      description: Timezone context for Line Start Date and Line End Date
+
+    line_total_budget:
+      type: Float
+      apiName: totalBudget
+      description: The maximum total spend enabled for the line.
+
+    line_daily_budget:
+      type: Float
+      apiName: dailyBudget
+      description: >-
+        The maximum daily spend enabled for a line. May be used in combination with
+        a total budget.
+
+    line_status_code:
+      type: String
+      apiName: statusCode
+      description: >-
+        The business workflow or ad serving status of a platorm line as captured in
+        the platform STATUS OF a created line (eg: Committed Completed Stopped
+        Running).
+
+    line_map_status_code:
+      type: String
+      apiName: mapStatusCode
+      description: >-
+        The business workflow or ad serving status of a platorm line mapped to a
+        consistent value across platforms (eg: NEED EXAMPLE).
+
+    line_serv_fee_type_code:
+      type: String
+      apiName: servFeeTypeCode
+      description: >-
+        Additional context for fee lines that describes the type of fee (e.g. Leads
+        List Fees Transaction Fees Consumer Fees PremFeesBiz Exchange Fees Revenue
+        Recognition)
+
+    line_delivery_model_code:
+      type: String
+      apiName: deliveryModelCode
+      description: >-
+        Indicates the serving priority and delivery goal type for the line. In
+        general the delivery goal is either unit based or all traffic for a
+        specified time period (exclusive). The selected value affects revenue
+        recognition behavior.
+
+    crm_line_number:
+      type: String
+      apiName: crmLineNumber
+      description: >-
+        Unique number that identifies a channel line in SFDC (LI-#####). The line
+        represents a contractual commitment to the customer and includes details
+        like flight dates budget impression goals high level targeting.
+
+    line_revenue_model_code:
+      type: String
+      apiName: revenueModelCode
+      description: >-
+        Revenue model is a driver of revenue recognition and billing behavior.
+        sample values include: Barter Internal Barter Bonus Credit Fee etc. For
+        example a bonus line will not have any revenue and can be booked with $0
+        budget. A Barter line can also be booked with a $0 budget but will have a
+        manual revenue adjustment outside UAD to account for the value of the
+        Barter.
+
+    line_pricing_type_code:
+      type: String
+      apiName: pricingTypeCode
+      description: >-
+        Indicates the model used to bill and recognize revenue for the line (e.g.
+        CPM CPC CPCV CPV FIXED)
+
+    demand_type:
+      type: String
+      apiName: demandType
+      description: >-
+        A rollup of the demand sub type classification which groups self serve
+        platform and RTB advertisers as third party while leaving managed as its own
+        grouping.
+
+    demand_sub_type:
+      type: String
+      apiName: demandSubType
+      description: >-
+        A classification of the advertiser as either managed self serve platform
+        user or RTB. The attribute(s) driving the mapping are ad platform dependent.
+
+    ad_product_id:
+      type: Int
+      apiName: adProductId
+      description: >-
+        The ID of an Ad Product one of several attributes that are part of a
+        business rule based classification model (a.k.a Ad Product Classification or
+        APC). The classification model is dynamic and groupings typically align with
+        quota splits and/or with revenue visibility focus areas. Additional
+        attributes in the model include Ad Sub-Product Ad Channel and Ad Business.
+
+    ad_product_name:
+      type: String
+      apiName: adProductName
+      description: >-
+        The name of an Ad Product one of several attributes that are part of a
+        business rule based classification model (a.k.a Ad Product Classification or
+        APC). The classification model is dynamic and groupings typically align with
+        quota splits and/or with revenue visibility focus areas. Additional
+        attributes in the model include Ad Sub-Product Ad Channel and Ad Business.
+
+    ad_sub_product_id:
+      type: Int
+      apiName: adSubProductId
+      description: >-
+        The ID of an Ad Sub-Product one of several attributes that are part of a
+        business rule based classification model (a.k.a Ad Product Classification or
+        APC). The classification model is dynamic and groupings typically align with
+        quota splits and/or with revenue visibility focus areas. Additional
+        attributes in the model include Ad Product Ad Channel and Ad Business.
+
+    ad_sub_product_name:
+      type: String
+      apiName: adSubProductName
+      description: >-
+        The name of a Sub-Product one of several attributes that are part of a
+        business rule based classification model (a.k.a Ad Product Classification or
+        APC). The classification model is dynamic and groupings typically align with
+        quota splits and/or with revenue visibility focus areas. Additional
+        attributes in the model include Ad Product Ad Channel and Ad Business.
+
+    ad_channel_id:
+      type: Int
+      apiName: adChannelId
+      description: >-
+        The ID of an Ad Channel one of several attributes that are part of a
+        business rule based classification model (a.k.a Ad Product Classification or
+        APC). This attribute in the classification refines the type of buy (e.g.
+        Premium Platform) or buyer (e.g. 3rd Party Backfill) with Client Type as the
+        basis. The classification model is dynamic and groupings typically align
+        with quota splits and/or with revenue visibility focus areas. Additional
+        attributes in the model include Ad Product Ad Sub-Product and Ad Business.
+
+    ad_channel_name:
+      type: String
+      apiName: adChannelName
+      description: >-
+        The name of an Ad Channel one of several attributes that are part of a
+        business rule based classification model (a.k.a Ad Product Classification or
+        APC). This attribute in the classification refines the type of buy (e.g.
+        Premium Platform) or buyer (e.g. 3rd Party Backfill) with Client Type as the
+        basis. The classification model is dynamic and groupings typically align
+        with quota splits and/or with revenue visibility focus areas. Additional
+        attributes in the model include Ad Product Ad Sub-Product and Ad Business.
+
+    ad_business_id:
+      type: Int
+      apiName: adBusinessId
+      description: >-
+        The ID of an Ad Business one of several attributes that are part of a
+        business rule based classification model (a.k.a Ad Product Classification or
+        APC). This attribute in the classification refines the type of media that is
+        intended to run from the line (e.g. Display Video Native). The
+        classification model is dynamic as business needs change and groupings
+        typically align with quota splits and/or with revenue visibility focus
+        areas. Additional attributes in the model include Ad Product Ad Sub-Product
+        and Ad Channel.
+
+    ad_business_name:
+      type: String
+      apiName: adBusinessName
+      description: >-
+        The name of an Ad Business one of several attributes that are part of a
+        business rule based classification model (a.k.a Ad Product Classification or
+        APC). This attribute in the classification refines the type of media that is
+        intended to run from the line (e.g. Display Video Native). The
+        classification model is dynamic as business needs change and groupings
+        typically align with quota splits and/or with revenue visibility focus
+        areas. Additional attributes in the model include Ad Product Ad Sub-Product
+        and Ad Channel.
+
+    account_management_type_id:
+      type: Int
+      apiName: accountManagementTypeId
+      description: >-
+        A unique ID associated with the classification of an advertiser as Managed
+        or Self Serve (Platform or RTB buyers). The classification is logic driven
+        with relevant attribute(s) depending on the ad platform.
+
+    account_management_type_name:
+      type: String
+      apiName: accountManagementTypeName
+      description: >-
+        Classification of an advertiser as Managed or Self Serve (Platform or RTB
+        buyers). The classification is logic driven with relevant attribute(s)
+        depending on the ad platform.
+
+    line_targeted_sites:
+      type: String
+      apiName: targetedSites
+      description: >-
+        An attribute of inventory targeting. Indicates the Site(s) explicitely
+        selected by the line creator for targeting.
+
+    line_targeted_custom_sections:
+      type: String
+      apiName: targetedCustomSections
+      description: >-
+        An attribute of inventory targeting. Indicates the Custom Section(s)
+        explicitely selected by the line creator for targeting.
+
+    line_targeted_property:
+      type: String
+      apiName: targetedProperty
+      description: >-
+        An attribute of inventory targeting. Indicates the Properties explicitely
+        selected by the line creator for targeting.
+
+    ofa_line_id:
+      type: Int
+      apiName: ofaLineId
+      description: >-
+        Represents the identifier that revenue will be certified against.
+
+    ofa_source_system:
+      type: String
+      apiName: ofaSourceSystem
+      description: >-
+        OFA's source_system attribute which has the Platform Name.

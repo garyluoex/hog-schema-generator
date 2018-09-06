@@ -1,0 +1,46 @@
+dim_platform_account:
+  apiName: PlatformAccount
+  type: HOGSDimension
+  description: Advertisers / Agencies in the individual Ad Platforms.
+  fields:
+# Primary Key
+    account_id_key:
+      type: String
+      apiName: key
+      description: >-
+        Unique identifier for an account created in an ad platform (e.g. DSP+ Apt).
+        This ID is unique only to one ad platform and it is possible for the same ID
+        to exist in two ad platforms.
+
+# Foreign Keys
+    platform_code:
+      type: String
+      apiName: platform
+      domain: Platform
+      description: Internal short name given to an Ad Platform (e.g. YAMP YAM).
+
+# Degenerate Fields
+    account_id:
+      type: String
+      apiName: id
+      description: >-
+        Unique identifier for an account created in an ad platform (e.g. DSP+ Apt).
+        This ID is unique only to one ad platform and it is possible for the same ID
+        to exist in two ad platforms.
+
+    account_name:
+      type: String
+      apiName: name
+      description: >-
+        Name of the account as provided by the creator of the order. Not unique
+        within or across ad platforms
+
+    account_timezone:
+      type: String
+      apiName: timezone
+      description: The timezone associated to the account in the ad platform.
+
+    account_currency:
+      type: String
+      apiName: currency
+      description: The currency associated to the account in the ad platform.

@@ -1,0 +1,21 @@
+dim_platform:
+  apiName: Platform
+  type: HOGSDimension
+  description: List of Platforms Supported.
+  fields:
+# Primary Key
+    platform_code:
+      type: String
+      apiName: code
+      description: Internal short name given to an Ad Platform (e.g. YAMP YAM).
+
+# Degenerate Fields
+    platform_name:
+      type: String
+      apiName: name
+      description: The name given to an Ad Platform (e.g. Apt BRXD Gemini).
+
+    supply_deal_type_affects_recognition:
+      type: String
+      apiName: supplyDealTypeAffectsRecognition
+      description: The flag that determines whether supply deal type affects revenue calculation.

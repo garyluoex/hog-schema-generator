@@ -1,0 +1,35 @@
+enum HOGSType {
+	Datasources
+	Record
+	Dimension
+	Metric
+}
+
+interface HOGSDatasources {
+	_HOGSType: HOGSType
+}
+
+interface HOGSRecord {
+	_HOGSType: HOGSType
+}
+
+interface HOGSDimension {
+	_HOGSType: HOGSType
+}
+
+interface HOGSMetric {
+	_HOGSType: HOGSType
+}
+
+input HOGSWhereBetweenIntOperator {
+	start: Int
+	end: Int
+}
+
+input HOGSWhereBetweenFloatOperator {
+	start: Float
+	end: Float
+}
+schema {
+  query: Datasources
+}

@@ -1,0 +1,39 @@
+revenue_datasource:
+  apiName: UADData
+  type: HOGSDatasources
+  description: Unified advertising datamart
+  fields:
+    platform_order:
+      apiName: platformOrder
+      domain: PlatformOrder
+      description: The order from the platform.
+
+    platform_line:
+      apiName: platformLine
+      domain: PlatformLine
+      description: The line from the platform.
+
+    impressions:
+      apiName: impressions
+      domain: Impressions
+      description: The impressions count from ads.
+
+audience_datasource:
+  apiName: DigitsData
+  type: HOGSDatasources
+  description:
+  fields:
+    platform_order:
+      apiName: platformOrder
+      domain: PlatformOrder
+      description: The order from the platform.
+
+    platform_line:
+      apiName: platformLine
+      domain: PlatformLine
+      description: The line from the platform.
+
+    revenue:
+      apiName: revenue
+      domain: Revenue
+      description: The revenue generated from ads.
