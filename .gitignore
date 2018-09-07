@@ -4,6 +4,8 @@
 build/
 out/
 
+# IDE file
+.idea/
 
 # Log file
 *.log
